@@ -6,7 +6,7 @@ RUN dnf update -y && \
 # build binary
 COPY . /go/src/mindspore/xihe-script
 
-RUN cd /go/src/mindspore/xihe-script && CGO_ENABLED=1 go build -o xihe-script
+RUN cd /go/src/mindspore/xihe-script && CGO_ENABLED=1 CGO_CFLAGS="-fstack-protector-all -D_FORTIFY_SOURCE=2 -O2" go build -buildmode=pie --ldflags "-s -linkmode 'external' -extldflags '-Wl,-z,relro,-z,now,-z,noexecstack'" -o xihe-script
 
 FROM openeuler/openeuler:22.03
 
