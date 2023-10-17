@@ -1,6 +1,6 @@
 numpy==1.23.0
 esdk-obs-python==3.22.2
-Pillow==9.3.0
+Pillow==10.0.1
 torch==1.13.1
 tqdm==4.64.0
 torchvision==0.14.1
