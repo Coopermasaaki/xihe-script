@@ -86,6 +86,7 @@ func (cfg *Configuration) GetMatch(id string) MatchFieldImpl {
 func (cfg *Configuration) GetMQConfig() mq.MQConfig {
 	return mq.MQConfig{
 		Addresses: cfg.MQ.ParseAddress(),
+		TLSConfig: cfg.MQ.TLSConfig,
 	}
 }
 
@@ -116,8 +117,9 @@ func (cfg *MQ) ParseAddress() []string {
 }
 
 type MQ struct {
-	Address string `json:"address" required:"true"`
-	Topics  Topics `json:"topics"  required:"true"`
+	Address   string       `json:"address"    required:"true"`
+	Topics    Topics       `json:"topics"     required:"true"`
+	TLSConfig mq.TLSConfig `json:"tls_config" required:"true"`
 }
 
 type Topics struct {
